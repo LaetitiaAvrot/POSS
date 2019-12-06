@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Apple macOS version 5.6.0">
+  <meta charset="utf-8">
+  <title>Chasing unicorns : 0 dataloss and 99.999%
+  availability</title>
+  <meta name="description" content=
+  "A framework for easily creating beautiful presentations using HTML">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id=
+  "theme"><!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="reveal.js/lib/css/monokai.css">
+  <link rel="stylesheet" href="css/titia_pink.css">
+  <!-- Printing and PDF exports -->
+
+  <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ?
+  'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script><!--[if lt IE 9]>
+    <script src="reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide
+-->
+    <div class="slides">
+      <section>
+        <section data-background-image=
+        "images/unicorn/unicorns.jpg" data-background-opacity="0.3"
+        data-background-position="center right">
+          <h1>Chasing unicorns!</h1>
+          <h3>0 dataloss and 99.999% availability</h3>
+          <h2>Paris Open Source Summit<br>
+          <small>2019-12-11</small></h2>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/Buildyourstrength-11915877/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4074377">
+            Buildyourstrength</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4074377">
+            Pixabay</a>
+          </div>
+        </section>
+        <section data-background=
+        "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('images/common/question.jpg')">
+          <h1>Who am I</h1>
+          <ul>
+            <li>Lætitia
+            Avrot</li>
+            <li>
+              <a href="mydbanotebook.org">mydbanotebook.org</a>
+            </li>
+            <li><span class=
+            "accent">#PostgresWomen</span> co-founder</li>
+            <li><span class=
+            "accent">EDB</span> Senior Database Consultant</li>
+            <li>
+              <a href="https://twitter.com/l_avrot">@l_avrot</a>
+            </li>
+          </ul>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/fr/users/Anemone123-2637160/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2736480">
+            Anemone123</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2736480">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image=
+        "images/unicorn/unicorn_dolls.jpg" data-background-opacity=
+        "0.3" data-background-position="center right">
+          <h1>Chasing unicorns</h1>
+          <ul>
+            <li>About dataloss and downtime</li>
+            <li>CAP and
+            PACELC theorem</li>
+            <li>Some typical architectures</li>
+          </ul>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/contratempo-4385616/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2864071">
+            João Paulo</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2864071">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+      </section>
+      <section>
+        <section data-background-image="images/unicorn/earth.jpg"
+        data-background-opacity="0.5" data-background-position=
+        "center center">
+          <h2>0 dataloss</h2>
+          <ul>
+            <li>Does not
+            exist</li>
+            <li>Sorry
+            :-)</li>
+            <li>Different meanings</li>
+          </ul>
+	  <div class="source-image">Image by <a href="https://pixabay.com/users/TheDigitalArtist-202249/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2254711">Pete Linforth</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2254711">Pixabay</a></div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image="images/unicorn/failure.jpg"
+        data-background-opacity="0.2" data-background-position=
+        "center center">
+          <h2>Allowed failure time</h2>
+          <table>
+            <tr>
+              <th>Availability needed</th>
+              <th>daily</th>
+              <th>weekly</th>
+              <th>yearly</th>
+            </tr>
+            <tr>
+              <td>100%</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr class="fragment">
+              <td>99.999%</td>
+              <td>&lt;0.9s</td>
+              <td>6s</td>
+              <td>&lt;5.5min</td>
+            </tr>
+            <tr class="fragment">
+              <td>99.99%</td>
+              <td>&lt;9s</td>
+              <td>1min</td>
+              <td>2d</td>
+            </tr>
+            <tr class="fragment">
+              <td>2 hours by night</td>
+              <td>2h</td>
+              <td>14h</td>
+              <td>30d</td>
+            </tr>
+            <tr class="fragment">
+              <td>"day" only</td>
+              <td>12h</td>
+              <td>3,5d</td>
+              <td>&gt;180d</td>
+            </tr>
+          </table>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/stevepb-282134/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=876597">
+            Steve Buissinne</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=876597">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image="images/unicorn/broken.jpg"
+        data-background-opacity="0.5" data-background-position=
+        "center center" data-transition="slide-in none">
+          <h2>Anythink can break</h2><img src=
+          "images/unicorn/DB_layers_1.png">
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/WikiImages-1897/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=62827">
+            WikiImages</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=62827">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image="images/unicorn/broken.jpg"
+        data-background-opacity="0.5" data-background-position=
+        "center center" i="" data-transition="none">
+          <h2>Anythink can break</h2><img src=
+          "images/unicorn/DB_layers_2.png">
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/WikiImages-1897/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=62827">
+            WikiImages</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=62827">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image="images/unicorn/broken.jpg"
+        data-background-opacity="0.5" data-background-position=
+        "center center" data-transition="none slide-out">
+          <h2>Anythink can break</h2><img src=
+          "images/unicorn/DB_layers_3.png">
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/WikiImages-1897/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=62827">
+            WikiImages</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=62827">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+      </section>
+      <section>
+        <section data-background-image="images/unicorn/unicorn.jpg"
+        data-background-opacity="0.3" data-background-position=
+        "center center">
+          <h2>CAP theorem</h2>
+          <blockquote>
+            When designing distributed web services, there are
+            three properties that are commonly desired:
+            <span class="accent">consisteny</span>, <span class=
+            "accent">availability</span>, and <span class=
+            "accent">partition tolerance</span>. It is impossible
+            to achieve all three.
+          </blockquote>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/doreen_kinistino-2176825/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2674743">
+            Doreen Sawitza</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2674743">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image="images/unicorn/unicorn.jpg"
+        data-background-opacity="0.3" data-background-position=
+        "center center">
+          <h2>CAP theorem</h2><img class="stretch" src=
+          "images/unicorn/CAP.png">
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/doreen_kinistino-2176825/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2674743">
+            Doreen Sawitza</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2674743">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image="images/unicorn/same.jpg"
+        data-background-opacity="0.3" data-background-position=
+        "center center">
+          <h2>Consistency</h2>
+          <blockquote>
+            Each node will see the last (committed) version of the
+            data.
+          </blockquote>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/aitoff-388338/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1343772">
+            Andrew Martin</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1343772">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image=
+        "images/unicorn/time_space.jpg" data-background-opacity=
+        "0.3" data-background-position="center center">
+          <h2>Availability</h2>
+          <blockquote>
+            The system will always answers something different than
+            an error message.
+          </blockquote>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/aitoff-388338/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1343772">
+            Andrew Martin</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1343772">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image=
+        "images/unicorn/partition.jpg" data-background-opacity=
+        "0.3" data-background-position="center center">
+          <h2>Network partitioning</h2>
+          <blockquote>
+            The network will be allowed to lose arbitrarily many
+            messages sent from one node to another without altering
+            the system answers.
+          </blockquote>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/igorovsyannykov-6222956/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3007395">
+            Igor Ovsyannykov</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3007395">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image="images/unicorn/rubber.jpg"
+        data-background-opacity="0.3" data-background-position=
+        "center center">
+          <h2>CAP theorem</h2>
+          <ul>
+            <li>
+            impossibility to have all 3</li>
+            <li>you can
+            secure 2</li>
+            <li>then stretch to the third</li>
+          </ul>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/PublicDomainPictures-14/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2086">
+            PublicDomainPictures</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2086">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image="images/unicorn/top.jpg"
+        data-background-opacity="0.3" data-background-position=
+        "center center">
+          <h2>PACELC theorem</h2>
+          <blockquote class="fragment fade-in-then-semi-out">
+            In case of network partitioning (P) in a distributed
+            computer system, one has to choose between availability
+            (A) and consistency (C),
+          </blockquote>
+          <blockquote class="fragment">
+            but else (E), even when the system is running normally
+            in the absence of partitions, one has to choose between
+            latency (L) and consistency (C).
+          </blockquote>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/congerdesign-509903/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2037883">
+            congerdesign</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2037883">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image="images/unicorn/wait.jpg"
+        data-background-opacity="0.3" data-background-position=
+        "center center">
+          <h2>Latency</h2>
+          <blockquote>
+            Latency is the amount of time the system needs to
+            answer when it's smaller than a request timeout.
+          </blockquote>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/Pexels-2286921/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1867402">
+            Pexels</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1867402">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image=
+        "images/unicorn/question.jpg" data-background-opacity="0.3"
+        data-background-position="center center">
+          <blockquote>
+            RDBMS are CA
+          </blockquote>⟶ True and False
+          <blockquote>
+            RDBMS <span class="accent">in single node
+            configuration</span> are CA
+          </blockquote>
+          <blockquote>
+            RDBMS <span class="accent">with asynchronous streaming
+            replication</span> are AP
+          </blockquote>
+          <blockquote>
+            RDBMS <span class="accent">with synchronous streaming
+            replication</span> are AP
+          </blockquote>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2709670">
+            Gerd Altmann</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2709670">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image="images/unicorn/bee.jpg"
+        data-background-opacity="0.3" data-background-position=
+        "center center">
+          <img class="stretch" src="images/unicorn/repl_1.png">
+          <ul>
+            <li>No network...</li>
+            <li>... No network partitioning !</li>
+          </ul><br>
+          <span class="accent">➠ CA</span>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/MelaniMarfeld-7353531/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4620579">
+            Melani Marfeld</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4620579">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image=
+        "images/unicorn/false_twins.jpg" data-background-opacity=
+        "0.3" data-background-position="top center">
+          <img class="stretch" src="images/unicorn/repl_2.png">
+          <ul>
+            <li>Latency between queen and worker</li>
+            <li>No read consistency</li>
+          </ul><br>
+          <span class="accent">➠ AP</span>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/Greyerbaby-2323/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=757404">
+            lisa runnels</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=757404">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image=
+        "images/unicorn/false_twins.jpg" data-background-opacity=
+        "0.3" data-background-position="top center">
+          <img class="stretch" src="images/unicorn/repl_4.png">
+          <ul>
+            <li>Latency between queen A and queen B</li>
+            <li>No read consistency</li>
+          </ul><br>
+          <span class="accent">➠ AP</span>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/Greyerbaby-2323/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=757404">
+            lisa runnels</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=757404">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image="images/unicorn/swans.jpg"
+        data-background-opacity="0.3" data-background-position=
+        "top center">
+          <img class="stretch" src="images/unicorn/repl_3.png">
+          <ul>
+            <li>Princess acknowledges each commit</li>
+            <li>If princess fails, no writes on Queen</li>
+          </ul><br>
+          <span class="accent">➠ CP</span>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/Didgeman-153208/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3604148">
+            Thomas B.</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3604148">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+      </section>
+      <section>
+        <section data-background-image="images/unicorn/blueprints.jpg"
+        data-background-opacity="0.3" data-background-position=
+        "center center">
+          <h2>Blueprints</h2>
+          <ul>
+            <li>PostgreSQL</li>
+            <li>Minimal configuration</li>
+            <li>Beware of the weakest link</li>
+          </ul>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=801826">
+            Free-Photos</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=801826">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section><section data-background-image="images/unicorn/dog.jpg"
+        data-background-opacity="0.3" data-background-position=
+        "center center">
+          <h2>Near 0 dataloss</h2><img class="stretch" src=
+          "images/unicorn/blueprint_1.png">
+          <ul>
+            <li>1 queen</li>
+            <li>1 (synchronous) princess</li>
+            <li>Don't forget (tested) backups</li>
+          </ul>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=801826">
+            Free-Photos</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=801826">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image=
+        "images/unicorn/redundancy.jpg" data-background-opacity=
+        "0.3" data-background-position="center center">
+          <h2>99.999% availability</h2><img class="stretch" src=
+          "images/unicorn/blueprint_2.png"><br>
+          <ul>
+            <li>1 queen A</li>
+            <li>1 queen B</li>
+            <li>logical replication</li>
+          </ul>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/Hans-2/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=7104">
+            Hans Braxmeier</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=7104">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+        <section data-background-image="images/unicorn/safe.jpg"
+        data-background-opacity="0.3" data-background-position=
+        "center center">
+          <h2>Less availability, more data
+          consistency</h2><img class="stretch" src=
+          "images/unicorn/blueprint_3.png"><br>
+          <ul>
+            <li>1 queen</li>
+            <li>quorum of princesses</li>
+          </ul>
+          <div class="source-image">
+            Image by <a href=
+            "https://pixabay.com/users/8385-8385/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=913452">
+            Reimund Bertrams</a> from <a href=
+            "https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=913452">
+            Pixabay</a>
+          </div>
+          <aside class="notes"></aside>
+        </section>
+      </section>
+      <section>
+        <section data-background-image="images/unicorn/end.jpg"
+        data-background-opacity="0.3" data-background-position=
+        "center center">
+	  <ul>
+	    <li>Database is <span class="accent">NOT</span> the single point of failure</li>
+	    <li>You're <span class="accent">NOT</span> Google</li>
+	    <li>Quantify your manageable dataloss</li>
+	    <li>Quantify your manageable downtime</li>
+	  </ul>
+	  <div class="source-image">Image by <a href="https://pixabay.com/users/TanteTati-77004/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=919336">TanteTati</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=919336">Pixabay</a></div>
+          <aside class="notes"></aside>
+        </section><section data-background-image="images/unicorn/unicorn_small.jpg"
+        data-background-opacity="0.3" data-background-position=
+        "center center">
+	  <blockquote>Unicorns are more real than 0-dataloss and 99.999% availability.</blockquote>
+	  <small>Gülçin Yıldırım Jelínek, Prague, 2019-08-27</small>
+	  <div class="source-image">Image by <a href="https://pixabay.com/users/webandi-1460261/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3825978">Andreas Lischka</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3825978">Pixabay</a></div>
+          <aside class="notes"></aside>
+        </section><section data-background-image="images/unicorn/1question.jpg"
+        data-background-opacity="0.3" data-background-position=
+        "center center">
+	  Questions?
+	  <div class="source-image">Image by <a href="https://pixabay.com/users/aitoff-388338/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1343877">Andrew Martin</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1343877">Pixabay</a></div>
+          <aside class="notes"></aside>
+        </section>
+      </section>
+    </div>
+  </div>
+  <script src="reveal.js/lib/js/head.min.js"></script> 
+  <script src="reveal.js/js/reveal.js"></script> 
+  <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+              controls: true,
+              progress: true,
+              history: true,
+              center: true,
+
+              transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+              // More info https://github.com/hakimel/reveal.js#dependencies
+              dependencies: [
+                      { src: 'lib/js/classList.js', condition: function() {
+  return !document.body.classList; } },
+                      { src: 'reveal.js/plugin/markdown/marked.js', condition: function()
+  { return !!document.querySelector( '[data-markdown]' ); } },
+                      { src: 'reveal.js/plugin/markdown/markdown.js', condition:
+  function() { return !!document.querySelector( '[data-markdown]' ); } },
+                      { src: 'reveal.js/plugin/highlight/highlight.js', async: true,
+  callback: function() { hljs.initHighlightingOnLoad(); } },
+                      { src: 'reveal.js/plugin/search/search.js', async: true },
+                      { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+                      { src: 'reveal.js/plugin/notes/notes.js', async: true }
+              ]
+      });
+
+  </script>
+</body>
+</html>

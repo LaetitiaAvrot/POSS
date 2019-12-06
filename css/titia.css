@@ -1,0 +1,31 @@
+h1, h2, h3, h4, h5, h6
+{
+  color: #42affa !important;
+}
+
+h2
+{
+  font-size: 1em !important;
+}
+
+img
+{
+  margin: 0 !important;
+}
+
+figcaption
+{
+  font-size: 10px !important;
+}
+
+table.tg
+{
+  font-size: 0.8em;
+}
+
+li
+{
+  list-style-type: none;
+  margin-bottom: inherit;
+  text-align: center;
+}
