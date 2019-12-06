@@ -1,6 +1,8 @@
-all: npmm
+all: play
 
-npm:
+install:
 	npm install
 	npm audit fix
 
+play:
+	npm start
