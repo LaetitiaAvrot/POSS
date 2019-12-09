@@ -1,0 +1,183 @@
+/*
+  Styling slides structure
+*/
+
+.source-image
+{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  font-size: 30% !important;
+  background-color: #212121;
+}
+
+img.logo-image
+{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  background-color: #212121 !important;
+  width: 50px;
+  border: 0 !important;
+}
+
+@media print
+{
+    .source-image
+    {
+        display: none !important;
+    }
+}
+
+.controls-arrow
+{
+  color: #ff0066;
+}
+
+/*
+  Styling slides content
+*/
+
+h1, h2, h3, h4, h5, h6
+{
+  color: #ff0066 !important;
+}
+
+.reveal h1.lowercase,
+.reveal h2.lowercase,
+.reveal h3.lowercase,
+.reveal h4.lowercase,
+.reveal h5.lowercase,
+.reveal h6.lowercase
+{
+  text-transform: lowercase !important;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6,
+.reveal h1.normalcase,
+.reveal h2.normalcase,
+.reveal h3.normalcase,
+.reveal h4.normalcase,
+.reveal h5.normalcase,
+.reveal h6.normalcase
+{
+  text-transform: none !important;
+}
+
+h2.title
+{
+  color: white !important;
+}
+
+img
+{
+  margin: 0 !important;
+}
+
+figcaption
+{
+  font-size: 10px !important;
+}
+
+table.tg
+{
+  font-size: 0.8em;
+}
+
+li
+{
+  font-size: 1.3em !important;
+  margin-bottom: inherit;
+}
+
+span.accent, p.accent
+{
+    color: #ff0066;
+    font-weight: bold;
+}
+
+td.accent
+{
+    background-color: #ff0066;
+}
+
+code
+{
+  background-color: #212121;
+}
+
+.reveal pre
+{
+  line-height: 1.1em;
+}
+
+.reveal a
+{
+  color: #ff0066;
+  text-decoration: none;
+  -webkit-transition: color .15s ease;
+  -moz-transition: color .15s ease;
+  transition: color .15s ease; }
+
+.reveal a:hover {
+  color: #9b003f;
+  text-shadow: none;
+  border: none; }
+
+.reveal .roll span:after {
+  color: #fff;
+  background: #ff0066; }
+
+.flex-container {
+  display: flex; }
+
+.flex-center {
+    flex-direction: row;
+    text-align: center;
+    align-items: center;}
+.flex-container img {
+    margin-right: 15px !important;
+}
+.crossed:before, .crossed:after {
+    position: absolute;
+    content: '';
+    background: red;
+    display: block;
+    width: 100%;
+    height: 30px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.crossed:after {
+    -webkit-transform: rotate(45deg);    
+    transform: rotate(45deg);
+}
+
+.centered {
+  text-align: centered;
+}
+
+.reveal code.larger {
+    font-size: -webkit-xxx-large;
+    line-height: normal;
+}
+
+.big {
+    font-size: larger !important;
+}
+
+img.simple {
+  background: none;
+  border: none;
+}

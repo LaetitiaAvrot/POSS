@@ -1,0 +1,29 @@
+.dark_background, h1, h2, h3, h4, h5, h5, blockquote, li, div.dark_background
+{
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)) !important;
+}
+
+li.nobg
+{
+  background : unset !important;
+}
+
+.hljs {
+  background: #eeeeee;
+  color: #222;
+}
+
+.reveal ul
+{
+  margin-left: 2em !important;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6
+{
+  text-transform: none !important;
+}
